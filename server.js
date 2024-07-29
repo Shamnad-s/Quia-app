@@ -210,12 +210,7 @@ io.on("connection", (socket) => {
         io.to(roomId).emit("roomUpdate", room);
       } else {
       }
-      // Optionally, generate user_id if needed here
-      // const user_id = generateCustomId();
-
-      //   if (room.users.length === 2) {
-      //     io.to(roomId).emit("startGame");
-      //   }
+      
     } catch (error) {
       console.error("Error handling joinRoom:", error);
       socket.emit("error", "An error occurred");
@@ -245,7 +240,7 @@ io.on("connection", (socket) => {
         });
       } else {
         socket.emit("gameOver", {
-          announcement: "congargulatins you successfully compltes the game",
+          announcement: "Congragulations you successfully completed the game.",
           is_complted: true,
           score: roomId.score,
         });

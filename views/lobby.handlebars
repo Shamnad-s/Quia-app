@@ -1,0 +1,279 @@
+ {{!-- <div class="container">
+    <h1>Lobby</h1>
+    {{#if message}}
+      <p class="message">{{message}}</p>
+    {{/if}}
+    <ul class="rooms-list">
+  {{#each rooms}}
+    <li class="room-item">
+      Room Name:- {{_doc.name}}
+      {{#if (gt (length _doc.users) 2)}}
+        <span class="room-full">Room is full</span>
+      {{else}}
+        <button class="join-room-button" onclick="joinRoom('{{_doc._id}}')">Join Room</button>
+      {{/if}}
+    </li>
+  {{/each}}
+</ul>
+    <form action="/rooms" method="post">
+      <button type="submit">Create Room</button>
+    </form>
+    <div class="d-flex">
+      <h1>{{title}}</h1>
+      <form action="/logout" method="post">
+        <button type="submit" class="btn btn-dark">Logout</button>
+      </form>
+    </div>
+    <p>Hi {{name}},</p>
+    <p>Your data: {{data}}</p>
+  </div>
+<script>
+  const userId = "{{user_id}}";
+
+    if (userId) {
+      // Store user_id in local storage
+      localStorage.setItem("user_id", userId);
+    }
+</script>
+
+<style>
+
+  h1 {
+      color: #4CAF50;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    form {
+      margin-top: 20px;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+    }
+    .d-flex {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .d-flex h1 {
+      margin: 0;
+    }
+    .d-flex form {
+      margin: 0;
+    }
+    p {
+      margin: 10px 0;
+    }
+    .message {
+      background: #ffeb3b;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .rooms-list {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.room-item {
+  display: flex; /* Allow horizontal layout for room name and button/message */
+  align-items: center; /* Vertically center content within list items */
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Add a subtle border between rooms */
+}
+
+.room-name {
+  flex: 1; /* Allow room name to expand and fill available space */
+  font-weight: bold;
+}
+
+.room-full {
+  color: red; /* Highlight "Room is full" with red color */
+}
+
+.join-room-button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer; /* Indicate clickable button */
+}
+
+.join-room-button:hover {
+  background-color: #eee; /* Add a slight hover effect */
+}
+</style> --}}
+
+
+<div class="container">
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1>Lobby</h1>
+        </div>
+        <div class="navbar-right">
+            <p>Hi {{name}},</p>
+            <form action="/logout" method="post">
+                <button type="submit" class="btn btn-dark">Logout</button>
+            </form>
+        </div>
+    </nav>
+    
+    {{#if message}}
+      <p class="message">{{message}}</p>
+    {{/if}}
+    <ul class="rooms-list">
+        {{#each rooms}}
+            <li class="room-item">
+                Room Name:- {{_doc.name}}
+                {{#if (gt (length _doc.users) 2)}}
+                    <span class="room-full">Room is full</span>
+                {{else}}
+                    <button class="join-room-button" onclick="joinRoom('{{_doc._id}}')">Join Room</button>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+    
+    <form action="/rooms" method="post">
+        <button type="submit">Create Room</button>
+    </form>
+</div>
+
+<script>
+  const userId = "{{user_id}}";
+
+  if (userId) {
+      // Store user_id in local storage
+      localStorage.setItem("user_id", userId);
+  }
+</script>
+
+<style>
+  .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      margin: 0 auto;
+  }
+
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+  }
+
+  .navbar-left h1 {
+      margin: 0;
+  }
+
+  .navbar-right {
+      display: flex;
+      align-items: center;
+  }
+
+  .navbar-right p {
+      margin: 0 10px 0 0;
+  }
+
+  ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  li {
+      background: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  button {
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+  }
+
+  button:hover {
+      background: #45a049;
+  }
+
+  form {
+      margin-top: 20px;
+  }
+
+  .message {
+      background: #ffeb3b;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+  }
+
+  .rooms-list {
+      list-style: none; /* Remove default bullet points */
+      padding: 0;
+      margin: 0;
+  }
+
+  .room-item {
+      display: flex; /* Allow horizontal layout for room name and button/message */
+      align-items: center; /* Vertically center content within list items */
+      padding: 10px;
+      border-bottom: 1px solid #ddd; /* Add a subtle border between rooms */
+  }
+
+  .room-name {
+      flex: 1; /* Allow room name to expand and fill available space */
+      font-weight: bold;
+  }
+
+  .room-full {
+      color: red; /* Highlight "Room is full" with red color */
+  }
+
+  .join-room-button {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer; /* Indicate clickable button */
+  }
+
+  .join-room-button:hover {
+      background-color: #eee; /* Add a slight hover effect */
+  }
+</style>

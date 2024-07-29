@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #333;
+    }
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+    }
+    .alert {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+    button {
+      width: 100%;
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #45a049;
+    }
+     a {
+      text-decoration: none;
+      color: #4CAF50;
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Signup Page</h1>
+    <form id="signupForm" action="/signup" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+        <div class="alert" id="nameMsg">{{nameMsg}}</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="newUsername">Username</label>
+        <input type="text" name="username" id="newUsername" required>
+        <div class="alert" id="usernameMsg">{{usernameMsg}}</div>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Password</label>
+        <input type="password" name="password" id="newPassword" required>
+        <div class="alert" id="pwdMsg">{{pwdMsg}}</div>
+      </div>
+      <button type="submit">Create account</button>
+      <a href="/">Log in</a>
+    </form>
+  </div>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      let isValid = true;
+
+      const name = document.getElementById('name').value;
+      const username = document.getElementById('newUsername').value;
+      const password = document.getElementById('newPassword').value;
+
+      const nameMsg = document.getElementById('nameMsg');
+      const usernameMsg = document.getElementById('usernameMsg');
+      const pwdMsg = document.getElementById('pwdMsg');
+
+      nameMsg.style.display = 'none';
+      usernameMsg.style.display = 'none';
+      pwdMsg.style.display = 'none';
+
+      if (name.length < 3) {
+        isValid = false;
+        nameMsg.textContent = 'Name must be at least 3 characters long';
+        nameMsg.style.display = 'block';
+      }
+
+      if (username.length < 5) {
+        isValid = false;
+        usernameMsg.textContent = 'Username must be at least 5 characters long';
+        usernameMsg.style.display = 'block';
+      }
+
+      if (password.length < 6) {
+        isValid = false;
+        pwdMsg.textContent = 'Password must be at least 6 characters long';
+        pwdMsg.style.display = 'block';
+      }
+
+      if (!isValid) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

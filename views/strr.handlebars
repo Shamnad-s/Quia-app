@@ -1,0 +1,14 @@
+ <h1 id="congratsMessage">Congratulations, you are in {{room_name}}</h1>
+  <button id="startGameButton" data-room-id="{{roomId}}">Start the game</button>
+<div id="questionContainer" style="display: none;">
+  <p id="questionText"></p>
+  <ul id="optionsList"></ul>
+  <input type="text" id="answerInput" placeholder="Your answer here">
+  <button id="submitAnswerButton" data-room-id="{{roomId}}">Submit Answer</button>
+ 
+ <p id="score">Score: 0</p>
+<style>
+  #answerInput {
+  visibility: hidden;
+}
+</style>
